@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: file://../Projects/TenMinutesStreamingCloud
+#          uri: https://github.com/Komdosh/TenMinutesCloudStreaming
+          searchPaths: tmsc-config
