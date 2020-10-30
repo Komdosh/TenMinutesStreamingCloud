@@ -4,5 +4,4 @@ spring:
   cloud:
     config:
       uri: http://localhost:8000
-      env: default # optional
       label: main # optional
