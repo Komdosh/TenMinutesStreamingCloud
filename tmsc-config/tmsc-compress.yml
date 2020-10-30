@@ -4,7 +4,7 @@ server:
 spring:
   devtools:
     livereload:
-      port: 35733
+      port: 35734
 
 eureka:
   client:
@@ -12,4 +12,4 @@ eureka:
       defaultZone: http://localhost:8001/eureka/
 
 info:
-  service: auth
+  service: compress

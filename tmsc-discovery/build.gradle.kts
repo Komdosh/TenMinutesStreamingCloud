@@ -33,6 +33,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.cloud:spring-cloud-config-client")
     implementation("org.springframework.cloud:spring-cloud-starter")
+    implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("io.github.microutils:kotlin-logging:1.7.6")

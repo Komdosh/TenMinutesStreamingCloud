@@ -1,5 +1,5 @@
 server:
-  port: 8002
+  port: 8001
 
 spring:
   devtools:
@@ -12,5 +12,6 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+    wait-time-in-ms-when-sync-empty: 0
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

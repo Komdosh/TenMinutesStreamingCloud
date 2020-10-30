@@ -1,16 +1,16 @@
-package pro.komdosh.tmsc.proxy
+package pro.komdosh.tmsc.gateway
 
 import mu.KotlinLogging
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient
 
 val log = KotlinLogging.logger {}
 
-@EnableZuulProxy
+@EnableDiscoveryClient
 @SpringBootApplication
-class TmscProxyApplication
+class TmscGatewayApplication
 
 fun main(args: Array<String>) {
-    runApplication<TmscProxyApplication>(*args)
+    runApplication<TmscGatewayApplication>(*args)
 }

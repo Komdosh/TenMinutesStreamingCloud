@@ -1,0 +1,39 @@
+server:
+  port: 8003
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: gateway
+
+spring:
+  devtools:
+    livereload:
+      port: 35734
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: tmsc-auth
+          uri: lb://tmsc-auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/auth/(?<path>.*), /$\{path}
+        - id: tmsc-compress
+          uri: lb://tmsc-compress
+          predicates:
+            - Path=/compress/**
+          filters:
+            - RewritePath=/compress/(?<path>.*), /$\{path}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8001/eureka/
+

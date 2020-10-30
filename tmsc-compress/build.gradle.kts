@@ -35,6 +35,8 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+    implementation("org.springframework.cloud:spring-cloud-starter-netflix-ribbon")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
     implementation("io.github.microutils:kotlin-logging:1.7.6")
     compileOnly("org.projectlombok:lombok")
