@@ -1,0 +1,25 @@
+server:
+  port: 8003
+
+spring:
+  devtools:
+    livereload:
+      port: 35732
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8002/eureka/
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+zuul:
+  routes:
+    department:
+      path: /department/**
+      serviceId: department-service
+    employee:
+      path: /employee/**
+      serviceId: employee-service
+    organization:
+      path: /organization/**
+      serviceId: organization-service
