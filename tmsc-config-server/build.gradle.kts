@@ -5,7 +5,6 @@ plugins {
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
     kotlin("jvm") version "1.4.10"
     kotlin("plugin.spring") version "1.4.10"
-    id("org.gradle.kotlin.kotlin-dsl") version "1.4.2"
 }
 
 group = "pro.komdosh"
@@ -20,9 +19,6 @@ java {
 configurations {
     compileOnly {
         extendsFrom(configurations.annotationProcessor.get())
-    }
-    all {
-        exclude("ch.qos.logback", "logback-classic")
     }
 }
 
