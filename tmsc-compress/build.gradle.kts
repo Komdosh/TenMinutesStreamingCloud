@@ -34,7 +34,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     /** Spring Boot **/
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
@@ -47,6 +47,11 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-hystrix")
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-ribbon")
+
+    /** Reactive Feign **/
+    implementation("com.playtika.reactivefeign:feign-reactor-cloud:2.0.23")
+    implementation("com.playtika.reactivefeign:feign-reactor-webclient:2.0.23")
+    implementation("com.playtika.reactivefeign:feign-reactor-spring-configuration:2.0.23")
 
     /** Utils **/
     implementation("io.github.microutils:kotlin-logging:2.0.3")
