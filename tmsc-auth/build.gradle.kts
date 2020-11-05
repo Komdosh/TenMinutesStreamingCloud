@@ -5,6 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
     kotlin("jvm") version "1.4.10"
     kotlin("plugin.spring") version "1.4.10"
+    kotlin("kapt") version "1.4.10"
 }
 
 group = "pro.komdosh"
@@ -39,6 +40,16 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
+    /** Spring Security **/
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.security:spring-security-oauth2-client")
+    implementation("io.jsonwebtoken:jjwt-api:0.11.2")
+    implementation("io.jsonwebtoken:jjwt-impl:0.11.2")
+    implementation("io.jsonwebtoken:jjwt-jackson:0.11.2")
+
+    /** Spring Data **/
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtimeOnly("com.h2database:h2")
 
     /** Spring Cloud **/
     implementation("org.springframework.cloud:spring-cloud-config-client")
@@ -49,6 +60,7 @@ dependencies {
 
     /** Utils **/
     implementation("io.github.microutils:kotlin-logging:2.0.3")
+    implementation("org.apache.commons:commons-lang3:3.11")
     compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
 
