@@ -12,9 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.reactive.config.EnableWebFlux
 import pro.komdosh.tmsc.auth.uaa.config.AppProperties
 import pro.komdosh.tmsc.auth.uaa.user.AuthProvider
-import pro.komdosh.tmsc.auth.uaa.user.User
 import pro.komdosh.tmsc.auth.uaa.user.UserRepository
-import pro.komdosh.tmsc.auth.uaa.user.UserRole
+import pro.komdosh.tmsc.auth.uaa.user.model.User
+import pro.komdosh.tmsc.auth.uaa.user.model.UserRole
 
 
 val log = KotlinLogging.logger {}

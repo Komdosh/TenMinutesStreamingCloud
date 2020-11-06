@@ -3,6 +3,9 @@ package pro.komdosh.tmsc.auth.uaa.user
 
 import org.springframework.security.oauth2.core.OAuth2AccessToken
 import org.springframework.security.oauth2.core.user.OAuth2User
+import pro.komdosh.tmsc.auth.uaa.user.model.CreateUserDto
+import pro.komdosh.tmsc.auth.uaa.user.model.User
+import pro.komdosh.tmsc.auth.uaa.user.model.UserDto
 import reactor.core.publisher.Mono
 
 

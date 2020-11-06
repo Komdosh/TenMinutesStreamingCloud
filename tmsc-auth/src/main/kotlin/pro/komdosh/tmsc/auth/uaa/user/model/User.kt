@@ -1,9 +1,10 @@
-package pro.komdosh.tmsc.auth.uaa.user
+package pro.komdosh.tmsc.auth.uaa.user.model
 
 import lombok.NoArgsConstructor
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import pro.komdosh.tmsc.auth.uaa.oauth2.OAuth2UserInfo
+import pro.komdosh.tmsc.auth.uaa.user.AuthProvider
 import javax.persistence.*
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank

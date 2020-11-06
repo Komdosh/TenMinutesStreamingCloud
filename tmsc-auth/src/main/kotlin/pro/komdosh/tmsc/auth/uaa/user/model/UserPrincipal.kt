@@ -1,4 +1,4 @@
-package pro.komdosh.tmsc.auth.uaa.user
+package pro.komdosh.tmsc.auth.uaa.user.model
 
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority

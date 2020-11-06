@@ -4,7 +4,7 @@ import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import org.springframework.stereotype.Service
-import pro.komdosh.tmsc.auth.uaa.user.User
+import pro.komdosh.tmsc.auth.uaa.user.model.User
 import java.security.Key
 import java.util.*
 

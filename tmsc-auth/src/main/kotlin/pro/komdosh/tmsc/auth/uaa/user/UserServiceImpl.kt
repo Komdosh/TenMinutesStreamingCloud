@@ -16,6 +16,7 @@ import org.springframework.util.StringUtils
 import pro.komdosh.tmsc.auth.log
 import pro.komdosh.tmsc.auth.uaa.oauth2.OAuth2UserInfo
 import pro.komdosh.tmsc.auth.uaa.oauth2.OAuth2UserInfoFactory
+import pro.komdosh.tmsc.auth.uaa.user.model.*
 import reactor.core.publisher.Mono
 import java.security.Principal
 import java.util.*

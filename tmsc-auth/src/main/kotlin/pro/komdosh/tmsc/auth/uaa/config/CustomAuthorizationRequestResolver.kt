@@ -12,9 +12,11 @@ import org.springframework.web.server.ServerWebExchange
 import pro.komdosh.tmsc.auth.uaa.oauth2.ISSUER_PARAM
 import pro.komdosh.tmsc.auth.uaa.oauth2.TOKEN_PARAM
 import pro.komdosh.tmsc.auth.uaa.user.AuthProvider
-import pro.komdosh.tmsc.auth.uaa.user.UserPrincipal
 import pro.komdosh.tmsc.auth.uaa.user.UserService
+import pro.komdosh.tmsc.auth.uaa.user.model.UserPrincipal
 import reactor.core.publisher.Mono
+import java.util.*
+import kotlin.collections.HashMap
 
 @Component
 class CustomAuthorizationRequestResolver(
@@ -73,7 +75,7 @@ class CustomAuthorizationRequestResolver(
                     .authorizationUri(noneAuthUri)
                     .redirectUri(AuthProvider.LOCAL.name)
                     .scopes(setOf(AuthProvider.LOCAL.name))
-                    .state("")
+                    .state(UUID.randomUUID().toString())
                     .attributes(attributes)
                     .additionalParameters(
                         mapOf(

@@ -9,6 +9,10 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.web.bind.annotation.*
 import pro.komdosh.tmsc.auth.uaa.config.JwtTokenService
 import pro.komdosh.tmsc.auth.uaa.user.*
+import pro.komdosh.tmsc.auth.uaa.user.model.CreateUserDto
+import pro.komdosh.tmsc.auth.uaa.user.model.User
+import pro.komdosh.tmsc.auth.uaa.user.model.UserDto
+import pro.komdosh.tmsc.auth.uaa.user.model.UserPrincipal
 import reactor.core.publisher.Mono
 import javax.validation.Valid
 

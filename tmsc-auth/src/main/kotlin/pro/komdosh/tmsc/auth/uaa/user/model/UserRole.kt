@@ -1,4 +1,4 @@
-package pro.komdosh.tmsc.auth.uaa.user
+package pro.komdosh.tmsc.auth.uaa.user.model
 
 
 enum class UserRole {

@@ -11,7 +11,7 @@ import org.springframework.web.util.UriComponentsBuilder
 import pro.komdosh.tmsc.auth.log
 import pro.komdosh.tmsc.auth.uaa.config.AppProperties
 import pro.komdosh.tmsc.auth.uaa.config.JwtTokenService
-import pro.komdosh.tmsc.auth.uaa.user.UserPrincipal
+import pro.komdosh.tmsc.auth.uaa.user.model.UserPrincipal
 import reactor.core.publisher.Mono
 import java.net.URI
 
