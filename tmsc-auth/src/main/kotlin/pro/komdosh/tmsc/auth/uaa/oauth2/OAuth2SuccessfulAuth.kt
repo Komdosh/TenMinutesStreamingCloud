@@ -10,14 +10,14 @@ import org.springframework.web.server.ServerWebExchange
 import org.springframework.web.util.UriComponentsBuilder
 import pro.komdosh.tmsc.auth.log
 import pro.komdosh.tmsc.auth.uaa.config.AppProperties
-import pro.komdosh.tmsc.auth.uaa.config.JwtTokenService
+import pro.komdosh.tmsc.auth.uaa.config.token.TokenService
 import pro.komdosh.tmsc.auth.uaa.user.model.UserPrincipal
 import reactor.core.publisher.Mono
 import java.net.URI
 
 @Component
 class OAuth2SuccessfulAuth(
-    private val jwtTokenService: JwtTokenService,
+    private val tokenService: TokenService,
     private val appProperties: AppProperties
 ) : RedirectServerAuthenticationSuccessHandler() {
     private val redirectStrategy: ServerRedirectStrategy = DefaultServerRedirectStrategy()
@@ -63,7 +63,7 @@ class OAuth2SuccessfulAuth(
 
         val targetUrl: String = redirectUri ?: DEFAULT_REDIRECT_URI
 
-        val token: String = jwtTokenService.generateToken(userPrincipal.user)
+        val token: String = tokenService.generateAccessToken(userPrincipal.user)
         val uriComponentsBuilder = UriComponentsBuilder.fromUriString(targetUrl)
             .queryParam(TOKEN_PARAM, token)
 

@@ -26,7 +26,7 @@ repositories {
     mavenCentral()
 }
 
-extra["springCloudVersion"] = "Hoxton.SR8"
+extra["springCloudVersion"] = "Hoxton.SR9"
 
 dependencies {
     /** Kotlin **/

@@ -26,7 +26,7 @@ repositories {
     mavenCentral()
 }
 
-extra["springCloudVersion"] = "Hoxton.SR8"
+extra["springCloudVersion"] = "Hoxton.SR9"
 
 dependencies {
     /** Kotlin **/
@@ -44,7 +44,6 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-gateway")
     implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-    implementation("org.springframework.cloud:spring-cloud-starter-netflix-hystrix")
 
     /** Utils **/
     implementation("io.github.microutils:kotlin-logging:2.0.3")

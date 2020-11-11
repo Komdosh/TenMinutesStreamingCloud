@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8002
 
 spring:
   devtools:
@@ -45,16 +45,11 @@ eureka:
 info:
   service: auth
 
-springdoc:
-  api-docs:
-    path: /api-docs
-  swagger-ui:
-    path: /api-ui
-
 app:
   auth:
-    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
-    tokenExpirationMsec: 864000000
+    token-secret: 926D96C90030DD58429D2751AC1BDBBC
+    token-expiration-msec: 864000000
+    refresh-token-expiration-msec: 1864000000
   oauth2:
     # After successfully authenticating with the OAuth2 Provider,
     # we'll be generating an auth token for the user and sending the token to the

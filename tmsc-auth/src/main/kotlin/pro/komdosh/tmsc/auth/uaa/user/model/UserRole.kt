@@ -5,5 +5,9 @@ enum class UserRole {
     ROLE_ADMIN,
     ROLE_MODERATOR,
     ROLE_CREATOR,
-    ROLE_USER
+    ROLE_USER;
+
+    fun authority(): String {
+        return this.name
+    }
 }

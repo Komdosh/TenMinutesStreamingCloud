@@ -11,14 +11,15 @@ class AppProperties {
     val oauth2 = OAuth2()
 
     class Auth {
-        val tokenSecret: String? = null
-        val tokenExpirationMsec: Long = 0
+        var tokenSecret: String? = null
+        var tokenExpirationMsec: Long = 0
+        var refreshTokenExpirationMsec: Long = 0
     }
 
     class OAuth2 {
         val authorizedRedirectUris: List<String> = ArrayList()
 
-        val baseUri: String = ""
+        var baseUri: String = ""
     }
 
 }

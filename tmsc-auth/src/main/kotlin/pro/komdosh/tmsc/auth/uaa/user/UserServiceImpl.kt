@@ -14,8 +14,12 @@ import org.springframework.security.oauth2.core.user.OAuth2UserAuthority
 import org.springframework.stereotype.Service
 import org.springframework.util.StringUtils
 import pro.komdosh.tmsc.auth.log
+import pro.komdosh.tmsc.auth.uaa.config.token.TokenRequest
+import pro.komdosh.tmsc.auth.uaa.config.token.TokenService
 import pro.komdosh.tmsc.auth.uaa.oauth2.OAuth2UserInfo
 import pro.komdosh.tmsc.auth.uaa.oauth2.OAuth2UserInfoFactory
+import pro.komdosh.tmsc.auth.uaa.user.api.AuthRequest
+import pro.komdosh.tmsc.auth.uaa.user.api.AuthResponse
 import pro.komdosh.tmsc.auth.uaa.user.model.*
 import reactor.core.publisher.Mono
 import java.security.Principal
@@ -27,7 +31,8 @@ import kotlin.collections.LinkedHashSet
 @Service
 class UserServiceImpl(
     private val userRepository: UserRepository,
-    private val passwordEncoder: PasswordEncoder
+    private val passwordEncoder: PasswordEncoder,
+    private val tokenService: TokenService
 ) : UserService {
 
     override fun create(createDto: CreateUserDto): Mono<UserDto> {
@@ -87,19 +92,16 @@ class UserServiceImpl(
         if (StringUtils.isEmpty(oAuth2UserInfo.email)) {
             throw IllegalStateException("Email not found from OAuth2 provider")
         }
-        var user = userRepository.findByEmail(oAuth2UserInfo.email)
-
-        user = if (user != null) {
-            if (user.provider != AuthProvider.valueOf(clientRegistration)) {
+        val user = userRepository.findByEmail(oAuth2UserInfo.email).map {
+            if (it.provider != AuthProvider.valueOf(clientRegistration)) {
                 throw IllegalStateException(
                     "Looks like you're signed up" +
-                            " with ${user.provider} account. Please use your ${user.provider} account to login."
+                            " with ${it.provider} account. Please use your ${it.provider} account to login."
                 )
             }
-            updateExistingUser(user, oAuth2UserInfo)
-        } else {
-            registerNewUser(clientRegistration, oAuth2UserInfo)
-        }
+            updateExistingUser(it, oAuth2UserInfo)
+        }.orElseGet { registerNewUser(clientRegistration, oAuth2UserInfo) }
+
         return UserPrincipal.create(user, oAuth2User.attributes)
 
     }
@@ -126,5 +128,40 @@ class UserServiceImpl(
         return userRepository.save(
             User.fromDto(UpdateUserDto(oAuth2UserInfo), existingUser, passwordEncoder)
         )
+    }
+
+    override fun refreshAccessToken(request: TokenRequest): Mono<String> {
+        return Mono.just(request)
+            .map(TokenRequest::refreshToken)
+            .filterWhen(tokenService::validateRefreshToken)
+            .switchIfEmpty(Mono.error(RuntimeException("Token is not valid")))
+            .flatMap(tokenService::extractUserId)
+            .flatMap { Mono.justOrEmpty(userRepository.findByEmail(it)) }
+            .switchIfEmpty(Mono.error(RuntimeException("User not found")))
+            .map(tokenService::generateAccessToken)
+    }
+
+    override fun invalidateRefreshToken(request: TokenRequest): Mono<Boolean> {
+        return Mono.just(request)
+            .map(TokenRequest::refreshToken)
+            .filterWhen(tokenService::validateRefreshToken)
+            .switchIfEmpty(Mono.error(RuntimeException("Token is not valid")))
+            .flatMap(tokenService::deactivateRefreshToken)
+    }
+
+    override fun authenticate(authRequest: AuthRequest): Mono<AuthResponse> {
+        return Mono.justOrEmpty(userRepository.findByEmail(authRequest.email).map { it })
+            .switchIfEmpty(Mono.error(RuntimeException("User not found")))
+            .filter(User::enabled)
+            .switchIfEmpty(Mono.error(RuntimeException("User not enabled")))
+            .filter { user -> passwordEncoder.matches(authRequest.password, user.password) }
+            .switchIfEmpty(Mono.error(RuntimeException("Wrong password")))
+            .flatMap { user ->
+                Mono.zip(
+                    Mono.just(tokenService.generateAccessToken(user)),
+                    tokenService.generateRefreshToken(user.email)
+                )
+            }
+            .map { tokens -> AuthResponse(tokens.t1, tokens.t2) }
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames
 import org.springframework.security.web.server.util.matcher.PathPatternParserServerWebExchangeMatcher
 import org.springframework.stereotype.Component
 import org.springframework.web.server.ServerWebExchange
+import pro.komdosh.tmsc.auth.uaa.config.token.TokenService
 import pro.komdosh.tmsc.auth.uaa.oauth2.ISSUER_PARAM
 import pro.komdosh.tmsc.auth.uaa.oauth2.TOKEN_PARAM
 import pro.komdosh.tmsc.auth.uaa.user.AuthProvider
@@ -23,7 +24,7 @@ class CustomAuthorizationRequestResolver(
     clientRegistrationRepository: ReactiveClientRegistrationRepository,
     private val appProperties: AppProperties,
     private val userService: UserService,
-    private val jwtTokenService: JwtTokenService,
+    private val tokenService: TokenService,
 ) : DefaultServerOAuth2AuthorizationRequestResolver(
     clientRegistrationRepository,
     PathPatternParserServerWebExchangeMatcher(
@@ -81,7 +82,7 @@ class CustomAuthorizationRequestResolver(
                         mapOf(
                             Pair(
                                 TOKEN_PARAM,
-                                jwtTokenService.generateToken(user)
+                                tokenService.generateAccessToken(user)
                             )
                         )
                     )

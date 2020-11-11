@@ -11,6 +11,7 @@ rootProject.name = "TenMinutesCloudStreaming"
 
 project("tmsc-auth")
 project("tmsc-compress")
+project("tmsc-health")
 project("tmsc-config-server")
 project("tmsc-discovery")
 project("tmsc-gateway")

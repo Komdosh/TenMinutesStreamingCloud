@@ -1,20 +1,19 @@
-package pro.komdosh.tmsc.auth
+package pro.komdosh.tmsc.health
 
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.cloud.context.config.annotation.RefreshScope
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Mono
 
-@RefreshScope
+
 @RestController
-class AuthController {
+class HealthController {
 
     @Value("\${info.service}")
     lateinit var service: String
 
-    @RequestMapping("/")
+    @RequestMapping("/health")
     fun hello(): Mono<String> {
-        return Mono.just("Using [$service] from config server")
+        return Mono.just("Here is [$service] service ")
     }
 }

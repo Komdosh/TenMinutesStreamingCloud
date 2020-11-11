@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.security.config.web.server.ServerHttpSecurity
 import org.springframework.security.core.AuthenticationException
 import org.springframework.security.web.server.SecurityWebFilterChain
+import org.springframework.security.web.server.csrf.ServerCsrfTokenRepository
+import org.springframework.security.web.server.csrf.WebSessionServerCsrfTokenRepository
 import org.springframework.security.web.server.util.matcher.PathPatternParserServerWebExchangeMatcher
 import org.springframework.web.server.ServerWebExchange
 import pro.komdosh.tmsc.auth.uaa.oauth2.OAuth2FailureAuth
@@ -16,8 +18,8 @@ import pro.komdosh.tmsc.auth.uaa.oauth2.OAuth2SuccessfulAuth
 import reactor.core.publisher.Mono
 
 
-@EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
+@EnableWebFluxSecurity
 class WebSecurityConfig(
     private val authenticationManager: AuthenticationManager,
     private val securityContextRepository: SecurityContextRepository,
@@ -25,6 +27,13 @@ class WebSecurityConfig(
     private val oAuth2SuccessfulAuth: OAuth2SuccessfulAuth,
     private val oAuth2FailureAuth: OAuth2FailureAuth
 ) {
+
+    @Bean
+    fun csrfTokenRepository(): ServerCsrfTokenRepository? {
+        val repository = WebSessionServerCsrfTokenRepository()
+        repository.setHeaderName("X-CSRF-TK")
+        return repository
+    }
 
     @Bean
     fun securityWebFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain {
@@ -41,7 +50,9 @@ class WebSecurityConfig(
                 }
             }
             .and()
-            .csrf().disable()
+            .csrf()
+            /*.csrfTokenRepository(csrfTokenRepository())*/
+            .disable()/*.and()*/
             .formLogin().disable()
             .httpBasic().disable()
             .authenticationManager(authenticationManager)
@@ -61,14 +72,19 @@ class WebSecurityConfig(
                 "/**/*.js"
             ).permitAll()
             .pathMatchers("/oauth2/**").permitAll()
-            .pathMatchers(HttpMethod.POST, "/api/v1/uaa", "/api/v1/uaa/login").permitAll()
-            .anyExchange().authenticated()
+            .pathMatchers(HttpMethod.POST, "/api/v1/uaa/register", "/api/v1/uaa/authenticate")
+            .permitAll()
+            .anyExchange().permitAll() //allow all connections for now
             .and()
             .oauth2Login { oauth2 ->
                 oauth2.authenticationSuccessHandler(oAuth2SuccessfulAuth)
                 oauth2.authenticationFailureHandler(oAuth2FailureAuth)
                 oauth2.authorizationRequestResolver(customAuthorizationRequestResolver)
+
                 oauth2.authenticationMatcher(PathPatternParserServerWebExchangeMatcher("/oauth2/code/{registrationId}"))
+            }
+            .oauth2ResourceServer {
+                it.jwt()
             }
             .build()
     }

@@ -16,18 +16,19 @@ import javax.validation.constraints.NotBlank
         ]
 )
 data class User(
-        @Id @GeneratedValue(strategy = GenerationType.AUTO)
-        val id: Long? = null,
-        val email: String = "",
-        val password: String = "",
-        val name: String = "",
-        val photoUrl: String = "",
-        @Enumerated(EnumType.STRING)
-        @ElementCollection(fetch = FetchType.EAGER)
-        val roles: Set<UserRole> = setOf(UserRole.ROLE_USER),
-        @Enumerated(EnumType.STRING)
-        val provider: AuthProvider = AuthProvider.LOCAL,
-        val providerId: String = ""
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    val id: Long? = null,
+    val email: String = "",
+    val password: String = "",
+    val name: String = "",
+    val photoUrl: String = "",
+    @Enumerated(EnumType.STRING)
+    @ElementCollection(fetch = FetchType.EAGER)
+    val roles: Set<UserRole> = setOf(UserRole.ROLE_USER),
+    @Enumerated(EnumType.STRING)
+    val provider: AuthProvider = AuthProvider.LOCAL,
+    val providerId: String = "",
+    val enabled: Boolean = true
 ) {
         fun toDto(): UserDto = UserDto(
                 id = this.id ?: 0,

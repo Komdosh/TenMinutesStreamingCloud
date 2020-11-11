@@ -1,4 +1,4 @@
-package pro.komdosh.tmsc.compress
+package pro.komdosh.tmsc.health
 
 import mu.KotlinLogging
 import org.springframework.boot.autoconfigure.SpringBootApplication
@@ -13,10 +13,10 @@ val log = KotlinLogging.logger {}
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableReactiveFeignClients
-class TmscCompressApplication {
+class TmscHealthApplication {
 
 }
 
 fun main(args: Array<String>) {
-    runApplication<TmscCompressApplication>(*args)
+    runApplication<TmscHealthApplication>(*args)
 }

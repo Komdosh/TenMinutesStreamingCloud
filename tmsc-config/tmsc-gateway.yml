@@ -26,12 +26,19 @@ spring:
             - Path=/auth/**
           filters:
             - RewritePath=/auth/(?<path>.*), /$\{path}
+        - id: tmsc-health
+          uri: lb://tmsc-health
+          predicates:
+            - Path=/health/**
+          filters:
+            - RewritePath=/health/(?<path>.*), /$\{path}
         - id: tmsc-compress
           uri: lb://tmsc-compress
           predicates:
             - Path=/compress/**
           filters:
             - RewritePath=/compress/(?<path>.*), /$\{path}
+            -
 eureka:
   client:
     serviceUrl:

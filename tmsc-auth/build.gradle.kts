@@ -5,6 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
     kotlin("jvm") version "1.4.10"
     kotlin("plugin.spring") version "1.4.10"
+    kotlin("plugin.jpa") version "1.4.10"
     kotlin("kapt") version "1.4.10"
 }
 
@@ -27,7 +28,7 @@ repositories {
     mavenCentral()
 }
 
-extra["springCloudVersion"] = "Hoxton.SR8"
+extra["springCloudVersion"] = "Hoxton.SR9"
 
 dependencies {
     /** Kotlin **/
@@ -43,9 +44,8 @@ dependencies {
     /** Spring Security **/
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.security:spring-security-oauth2-client")
-    implementation("io.jsonwebtoken:jjwt-api:0.11.2")
-    implementation("io.jsonwebtoken:jjwt-impl:0.11.2")
-    implementation("io.jsonwebtoken:jjwt-jackson:0.11.2")
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+    implementation("com.auth0:java-jwt:3.11.0")
 
     /** Spring Data **/
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
@@ -56,8 +56,6 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter")
     implementation("org.springframework.cloud:spring-cloud-starter-sleuth")
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-    implementation("org.springframework.cloud:spring-cloud-starter-netflix-hystrix")
-
     /** Utils **/
     implementation("io.github.microutils:kotlin-logging:2.0.3")
     implementation("org.apache.commons:commons-lang3:3.11")

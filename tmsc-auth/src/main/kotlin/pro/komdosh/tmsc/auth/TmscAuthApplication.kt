@@ -36,7 +36,7 @@ fun main(args: Array<String>) {
 }
 
 fun dataSetup(userRepository: UserRepository, passwordEncoder: PasswordEncoder) {
-    if (userRepository.findByEmail("admin") == null) {
+    if (userRepository.findByEmail("admin").isEmpty) {
         userRepository.save(
             User(
                 null,
