@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: tmsc-stream-video
+  cloud:
+    config:
+      uri: http://localhost:8000
+      label: main # optional

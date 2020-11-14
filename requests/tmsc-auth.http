@@ -1,4 +1,4 @@
-POST http://localhost:8002/api/v1/uaa/authenticate
+POST http://localhost:9000/api/v1/uaa/authenticate
 Content-Type: application/json
 
 {
