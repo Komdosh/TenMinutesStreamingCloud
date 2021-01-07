@@ -1,5 +1,5 @@
 server:
-  port: 8003
+  port: 8002
 
 management:
   endpoint:
@@ -38,7 +38,12 @@ spring:
             - Path=/compress/**
           filters:
             - RewritePath=/compress/(?<path>.*), /$\{path}
-            -
+        - id: tmsc-stream-video
+          uri: lb://tmsc-stream-video
+          predicates:
+            - Path=/streaming/**
+          filters:
+            - RewritePath=/streaming/(?<path>.*), /$\{path}
 eureka:
   client:
     serviceUrl:

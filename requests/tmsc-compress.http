@@ -1,2 +1,2 @@
-POST http://localhost:8003/compress/hello
+POST http://localhost:8002/compress/hello
 Content-Type: application/json

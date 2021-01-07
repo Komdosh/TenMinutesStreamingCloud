@@ -1,0 +1,6 @@
+# update gateway routes
+POST http://localhost:8002/actuator/gateway/refresh
+
+###
+GET http://localhost:8002/actuator/gateway/routes
+
