@@ -1,12 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.3.5.RELEASE"
+    id("org.springframework.boot") version "2.4.1"
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
-    kotlin("jvm") version "1.4.10"
-    kotlin("plugin.spring") version "1.4.10"
-    kotlin("plugin.jpa") version "1.4.10"
-    kotlin("kapt") version "1.4.10"
+    kotlin("jvm") version "1.4.21"
+    kotlin("plugin.spring") version "1.4.21"
+    kotlin("plugin.jpa") version "1.4.21"
+    kotlin("kapt") version "1.4.21"
 }
 
 group = "pro.komdosh"
@@ -28,7 +28,7 @@ repositories {
     mavenCentral()
 }
 
-extra["springCloudVersion"] = "Hoxton.SR9"
+extra["springCloudVersion"] = "2020.0.0"
 
 dependencies {
     /** Kotlin **/

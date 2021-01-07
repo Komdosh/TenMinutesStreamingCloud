@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: tmsc-discovery
-  cloud:
-    config:
-      uri: http://localhost:8000
-      label: main # optional

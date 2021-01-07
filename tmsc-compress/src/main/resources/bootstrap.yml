@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: tmsc-compress
-  cloud:
-    config:
-      uri: http://localhost:8000
-      label: main # optional

@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: tmsc-auth
+  profiles:
+    active: secrets
+  config:
+    import: configserver:http://localhost:8000

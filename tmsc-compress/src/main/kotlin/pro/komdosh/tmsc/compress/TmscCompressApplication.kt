@@ -13,10 +13,9 @@ val log = KotlinLogging.logger {}
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableReactiveFeignClients
-class TmscCompressApplication {
-
-}
+class TmscCompressApplication
 
 fun main(args: Array<String>) {
+
     runApplication<TmscCompressApplication>(*args)
 }

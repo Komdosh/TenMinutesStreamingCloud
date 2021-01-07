@@ -5,3 +5,13 @@ server:
 endpoints:
   health:
     sensitive: false
+
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: tmsc-config
+        git:
+          uri: https://github.com/Komdosh/TenMinutesCloudStreaming
+          searchPaths: tmsc-config

@@ -1,2 +1,6 @@
-POST http://localhost:8002/compress/hello
+GET http://127.0.0.1:8002/compress/hello
+Content-Type: application/json
+
+###
+GET http://127.0.0.1:8002/health/health
 Content-Type: application/json

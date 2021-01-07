@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: tmsc-health
+  config:
+    import: configserver:http://localhost:8000

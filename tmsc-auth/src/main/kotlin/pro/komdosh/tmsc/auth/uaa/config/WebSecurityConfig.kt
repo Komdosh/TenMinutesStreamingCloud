@@ -63,15 +63,15 @@ class WebSecurityConfig(
                 "/",
                 "/error",
                 "/favicon.ico",
-                "/**/*.png",
-                "/**/*.gif",
-                "/**/*.svg",
-                "/**/*.jpg",
-                "/**/*.html",
-                "/**/*.css",
-                "/**/*.js"
+                "/*/*.png",
+                "/*/*.gif",
+                "/*/*.svg",
+                "/*/*.jpg",
+                "/*/*.html",
+                "/*/*.css",
+                "/*/*.js"
             ).permitAll()
-            .pathMatchers("/oauth2/**").permitAll()
+            .pathMatchers("/oauth2/*").permitAll()
             .pathMatchers(HttpMethod.POST, "/api/v1/uaa/register", "/api/v1/uaa/authenticate")
             .permitAll()
             .anyExchange().permitAll() //allow all connections for now
@@ -83,9 +83,9 @@ class WebSecurityConfig(
 
                 oauth2.authenticationMatcher(PathPatternParserServerWebExchangeMatcher("/oauth2/code/{registrationId}"))
             }
-            .oauth2ResourceServer {
+/*            .oauth2ResourceServer {
                 it.jwt()
-            }
+            }*/
             .build()
     }
 

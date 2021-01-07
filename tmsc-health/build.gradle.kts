@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.3.5.RELEASE"
+    id("org.springframework.boot") version "2.4.1"
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
-    kotlin("jvm") version "1.4.10"
-    kotlin("plugin.spring") version "1.4.10"
+    kotlin("jvm") version "1.4.21"
+    kotlin("plugin.spring") version "1.4.21"
 }
 
 group = "pro.komdosh"
@@ -26,7 +26,7 @@ repositories {
     mavenCentral()
 }
 
-extra["springCloudVersion"] = "Hoxton.SR9"
+extra["springCloudVersion"] = "2020.0.0"
 
 dependencies {
     /** Kotlin **/
@@ -46,7 +46,6 @@ dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
 
     /** Reactive Feign **/
-    implementation("com.playtika.reactivefeign:feign-reactor-cloud")
     implementation("com.playtika.reactivefeign:feign-reactor-webclient")
     implementation("com.playtika.reactivefeign:feign-reactor-spring-configuration")
 
@@ -64,7 +63,7 @@ dependencies {
 dependencyManagement {
     imports {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
-        mavenBom("com.playtika.reactivefeign:feign-reactor-bom:2.0.23")
+        mavenBom("com.playtika.reactivefeign:feign-reactor-bom:2.0.25")
     }
 }
 
