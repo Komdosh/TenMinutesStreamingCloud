@@ -14,6 +14,6 @@ class HealthController {
 
     @RequestMapping("/health")
     fun hello(): Mono<String> {
-        return Mono.just("Here is [$service] service ")
+        return Mono.just("Here is [$service] service")
     }
 }

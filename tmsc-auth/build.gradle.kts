@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.4.1"
+    id("org.springframework.boot") version "2.4.3"
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
     kotlin("jvm") version "1.4.21"
     kotlin("plugin.spring") version "1.4.21"
@@ -28,7 +28,7 @@ repositories {
     mavenCentral()
 }
 
-extra["springCloudVersion"] = "2020.0.0"
+extra["springCloudVersion"] = "2020.0.1"
 
 dependencies {
     /** Kotlin **/
